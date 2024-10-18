@@ -9,6 +9,18 @@ jobs:
   build-deploy:
     name: Build and Deploy Blog Application
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,6 +32,9 @@ jobs:
           java-version: 17
 
       - name: Unit Tests
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
         run: mvn -B test --file pom.xml
 
       - name: Build Application
