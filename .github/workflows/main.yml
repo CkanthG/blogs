@@ -23,7 +23,7 @@ jobs:
         ports:
           - 5432:5432
         volumes:
-          - .sql/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+          - sql/migration.sql:/docker-entrypoint-initdb.d/migration.sql
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
