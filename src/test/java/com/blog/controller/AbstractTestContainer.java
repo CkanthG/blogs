@@ -7,7 +7,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;
 
-@SpringBootTest
 public class AbstractTestContainer {
 
     static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"))
@@ -21,7 +20,10 @@ public class AbstractTestContainer {
 
     static {
         postgreSQLContainer.start();
-        System.setProperty("POSTGRES_PORT", postgreSQLContainer.getMappedPort(5432).toString());
+        var mappedPort = postgreSQLContainer.getMappedPort(5432).toString();
+        System.out.println("mappedPort @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ " + mappedPort);
+        System.setProperty("POSTGRES_PORT", mappedPort);
+        System.out.println("Get System POSTGRES_PORT : " + System.getProperty("POSTGRES_PORT"));
         // Optionally, if you want the container to be reused across tests (faster initialization)
         postgreSQLContainer.withReuse(true);
     }
