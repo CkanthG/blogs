@@ -22,8 +22,7 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-        volumes:
-          - sql/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,6 +32,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
+
+      - name: Run migrations
+        run: psql -f sql/migration.sql postgresql://postgres:password@localhost:5432/blogs_db
 
       - name: Unit Tests
         env:
