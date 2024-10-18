@@ -2,15 +2,12 @@ package com.blog.controller;
 
 import com.blog.entities.Blog;
 import com.blog.entities.User;
-import com.blog.models.BlogDto;
 import com.blog.models.CommentDto;
 import com.blog.repositories.BlogRepository;
 import com.blog.repositories.CommentRepository;
 import com.blog.repositories.UserRepository;
 import com.blog.service.CommentService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CommentControllerIT {
+class CommentControllerIT extends AbstractTestContainer {
 
     @Autowired
     private CommentService service;

@@ -1,12 +1,9 @@
 package com.blog.controller;
 
-import com.blog.entities.User;
 import com.blog.models.UserDto;
 import com.blog.repositories.UserRepository;
 import com.blog.service.UserService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserControllerIT {
+class UserControllerIT extends AbstractTestContainer {
 
     @Autowired
     private UserService service;

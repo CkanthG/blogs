@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:${POSTGRES_PORT}/blogs_db"
+    username: postgres
+    password: password
+    platform: postgresql
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-timeout: 250
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        default_schema: public
+        format_sql: false
+        jdbc:
+          batch_size: 20000
+          lob:
+            non_contextual_creation: true
+
